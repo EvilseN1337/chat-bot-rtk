@@ -113,7 +113,6 @@
     <div class="main-container shadow-2xl">
         <nav class="glass-header border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
             <div class="flex items-center gap-3">
-                <!-- Контейнер логотипа с защитой от ошибок -->
                 <div class="w-10 h-10 bg-white rounded-xl shadow-inner border border-slate-100 flex items-center justify-center p-1.5 overflow-hidden">
                     <img src="./logo.png" class="w-full h-full object-contain" alt="Логотип" onerror="this.src='https://www.rt.ru/favicon.ico'">
                 </div>
@@ -128,8 +127,11 @@
                     <p class="text-[10px] text-slate-400 font-medium mt-1 italic">Подбирает тариф...</p>
                 </div>
                 <div class="relative">
-                    <div class="w-11 h-11 rounded-full border-2 border-rt-purple p-0.5 shadow-md">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" class="w-full h-full rounded-full object-cover" alt="Михаил">
+                    <div class="w-11 h-11 rounded-full border-2 border-rt-purple p-0.5 shadow-md overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&auto=format&fit=crop" 
+                            class="w-full h-full rounded-full object-cover" 
+                            alt="Михаил"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Михаил&background=7722FF&color=fff'">
                     </div>
                     <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
                 </div>
@@ -158,7 +160,7 @@
         <div class="input-area">
             <form id="chat-form" class="flex items-center gap-2">
                 <input type="text" id="user-input" autocomplete="off" class="flex-grow bg-white border-2 border-slate-200 rounded-2xl px-6 py-4 focus:border-rt-purple outline-none shadow-xl transition-all text-slate-700 font-medium placeholder:text-slate-400" placeholder="Напишите здесь...">
-                <button type="submit" class="bg-sky-500/90 hover:bg-sky-600 text-white p-4 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-sm">
+                <button type="submit" class="bg-sky-500/90 hover:bg-sky-600 text-white p-4 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-sm shadow-lg shadow-sky-500/30">
                     <i data-lucide="send" class="w-6 h-6"></i>
                 </button>
             </form>
@@ -180,10 +182,10 @@
         let currentStep = 0;
 
         const steps = [
-            { question: "Приветствую! 👋 Меня зовут Михаил, я эксперт по подключению Ростелеком. Сегодня отличный день для обновлений!", field: 'greeting' },
-            { question: "Чтобы я подобрал для вас закрытый тариф с максимальной выгодой, ответьте на 3 коротких вопроса. Это займет меньше минуты. Готовы? <br><br><b>Как мне лучше к вам обращаться?</b>", field: 'name' },
-            { question: "Приятно познакомиться, {name}! 🤝 Напишите ваш адрес (город, улица, дом). Я проверю, какие тарифы и технологии доступны в вашем доме.", field: 'address' },
-            { question: "Спасибо! Оставьте ваш номер телефона, я перезвоню вам в течение 15 минут, чтобы обсудить детали подключения и вашу персональную скидку до 50% на первые месяцы!", field: 'phone' },
+            { question: "Приветствую! 👋 Меня зовут Михаил, я ваш личный менеджер по подключению Ростелеком. Сегодня отличный день для подключения!", field: 'greeting' },
+            { question: "Чтобы я подобрал для вас тариф с максимальной выгодой, ответьте на 3 коротких вопроса. Это займет меньше минуты. Готовы? <br><br><b>Как мне лучше к вам обращаться?</b>", field: 'name' },
+            { question: "Приятно познакомиться, {name}! 🤝 Напишите ваш адрес (город, улица, дом). Я проверю, какие тарифы и технологии подключения доступны в вашем доме.", field: 'address' },
+            { question: "Спасибо! Оставьте ваш номер телефона, я перезвоню вам в течение 15 минут, чтобы обсудить детали подключения и вашу персональную скидку!", field: 'phone' },
             { question: "Ура! 🎉 Заявка принята. Я уже формирую список лучших предложений для вас. Ждите звонка с номера +7(991)424-23-37, я на связи!", field: 'done' }
         ];
 
