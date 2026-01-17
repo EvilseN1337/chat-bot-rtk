@@ -16,7 +16,6 @@
             --rt-gradient: linear-gradient(135deg, #7722FF 0%, #AD22FF 100%);
         }
         
-        /* Оптимизация для мобильных устройств */
         html, body { 
             font-family: 'Inter', sans-serif; 
             background: #f0f2f5; 
@@ -105,7 +104,6 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 
-        .benefit-card { transition: all 0.3s ease; }
         @media (max-width: 480px) {
             #quick-benefits { grid-template-columns: 1fr; }
         }
@@ -113,11 +111,11 @@
 </head>
 <body>
     <div class="main-container shadow-2xl">
-        <!-- Шапка -->
         <nav class="glass-header border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-white rounded-xl shadow-inner border border-slate-100 flex items-center justify-center p-1.5">
-                    <img src="logo.png" class="w-full h-full object-contain" alt="Логотип">
+                <!-- Контейнер логотипа с защитой от ошибок -->
+                <div class="w-10 h-10 bg-white rounded-xl shadow-inner border border-slate-100 flex items-center justify-center p-1.5 overflow-hidden">
+                    <img src="./logo.png" class="w-full h-full object-contain" alt="Логотип" onerror="this.src='https://www.rt.ru/favicon.ico'">
                 </div>
                 <div>
                     <span class="font-bold text-base tracking-tight text-slate-800 leading-none block">Ростелеком</span>
@@ -139,7 +137,6 @@
         </nav>
 
         <div id="chat-window" class="custom-scrollbar">
-            <!-- Блок преимуществ -->
             <div id="quick-benefits" class="grid grid-cols-2 gap-2 mb-2">
                 <div class="benefit-card bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-2">
                     <div class="bg-purple-50 p-1.5 rounded-lg text-rt-purple"><i data-lucide="clock" class="w-4 h-4"></i></div>
@@ -152,22 +149,17 @@
             </div>
         </div>
 
-        <!-- Индикатор печати -->
         <div id="typing-indicator" class="hidden px-4 mb-2">
             <div class="bg-white px-5 py-3 rounded-2xl shadow-sm border border-slate-100 w-max flex gap-2">
                 <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
             </div>
         </div>
 
-        <!-- Зона ввода -->
         <div class="input-area">
             <form id="chat-form" class="flex items-center gap-2">
-                <input type="text" id="user-input" autocomplete="off" 
-                    class="flex-grow bg-white border-2 border-slate-200 rounded-2xl px-6 py-4 focus:border-rt-purple outline-none shadow-xl transition-all text-slate-700 font-medium placeholder:text-slate-400" 
-                    placeholder="Напишите здесь...">
-                <button type="submit" 
-                    class="bg-sky-500/90 hover:bg-sky-600 text-white p-4 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-lg shadow-sky-500/30 flex items-center justify-center border border-white/20 backdrop-blur-sm">
-                    <i data-lucide="send" class="w-6 h-6 text-white drop-shadow-sm"></i>
+                <input type="text" id="user-input" autocomplete="off" class="flex-grow bg-white border-2 border-slate-200 rounded-2xl px-6 py-4 focus:border-rt-purple outline-none shadow-xl transition-all text-slate-700 font-medium placeholder:text-slate-400" placeholder="Напишите здесь...">
+                <button type="submit" class="bg-sky-500/90 hover:bg-sky-600 text-white p-4 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-sm">
+                    <i data-lucide="send" class="w-6 h-6"></i>
                 </button>
             </form>
             <div class="flex items-center justify-center gap-2 mt-3 opacity-60">
@@ -188,26 +180,11 @@
         let currentStep = 0;
 
         const steps = [
-            { 
-                question: "Приветствую! 👋 Меня зовут Михаил, я эксперт по подключению Ростелеком. Сегодня отличный день для обновлений!", 
-                field: 'greeting' 
-            },
-            { 
-                question: "Чтобы я подобрал для вас закрытый тариф с максимальной выгодой, ответьте на 3 коротких вопроса. Это займет меньше минуты. Готовы? <br><br><b>Как мне лучше к вам обращаться?</b>", 
-                field: 'name' 
-            },
-            { 
-                question: "Приятно познакомиться, {name}! 🤝 Напишите ваш адрес (город, улица, дом). Я проверю, какие тарифы и технологии доступны в вашем доме.", 
-                field: 'address' 
-            },
-            { 
-                question: "Спасибо! Оставьте ваш номер телефона, я перезвоню вам в течение 15 минут, чтобы обсудить детали подключения и вашу персональную скидку до 50% на первые месяцы!", 
-                field: 'phone' 
-            },
-            { 
-                question: "Ура! 🎉 Заявка принята. Я уже формирую список лучших предложений для вас. Ждите звонка с номера +7(991)424-23-37, я на связи!", 
-                field: 'done' 
-            }
+            { question: "Приветствую! 👋 Меня зовут Михаил, я эксперт по подключению Ростелеком. Сегодня отличный день для обновлений!", field: 'greeting' },
+            { question: "Чтобы я подобрал для вас закрытый тариф с максимальной выгодой, ответьте на 3 коротких вопроса. Это займет меньше минуты. Готовы? <br><br><b>Как мне лучше к вам обращаться?</b>", field: 'name' },
+            { question: "Приятно познакомиться, {name}! 🤝 Напишите ваш адрес (город, улица, дом). Я проверю, какие тарифы и технологии доступны в вашем доме.", field: 'address' },
+            { question: "Спасибо! Оставьте ваш номер телефона, я перезвоню вам в течение 15 минут, чтобы обсудить детали подключения и вашу персональную скидку до 50% на первые месяцы!", field: 'phone' },
+            { question: "Ура! 🎉 Заявка принята. Я уже формирую список лучших предложений для вас. Ждите звонка с номера +7(991)424-23-37, я на связи!", field: 'done' }
         ];
 
         function addMessage(text, isBot = true) {
